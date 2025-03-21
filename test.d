@@ -1,7 +1,7 @@
 #pragma D option destructive
 #pragma D option quiet
 
-pid$target:GameTest_relx64:oxygen*:entry
+pid$target:dxasm:*:entry
 {
 	/*
 	printf("%s %llx\n", probefunc, timestamp);
@@ -9,9 +9,11 @@ pid$target:GameTest_relx64:oxygen*:entry
 	self->functime[probefunc] = timestamp;
 }
 
-pid$target:GameTest_relx64:oxygen*:return
+pid$target:dxasm:*:return
 {
-
+	if (self->functime[probefunc])
+	{
+	
 	this->ts = timestamp - self->functime[probefunc];
 
 /*
@@ -46,4 +48,6 @@ pid$target:GameTest_relx64:oxygen*:return
 
 	printf("{\"pid\":%d,\"tid\":%d,\"ts\":%llu,\"dur\":%d,\"ph\":\"X\",\"name\":\"%s\",\"args\":{\"ns\":%llu}},\n", pid, tid, timestamp 
 	, this->ts, probefunc, this->ts );
+
+	}
 }
