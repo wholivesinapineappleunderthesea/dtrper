@@ -26,8 +26,24 @@ pid$target:GameTest_relx64:oxygen*:return
 
 	{ "pid":1, "tid":1, "ts":546867, "dur":121564, "ph":"X", "name":"DoThings", "args":{ "ns":121.6 } }
 
+
+
+	NOTE: 
+	
+	maybe only the return probe is present, then self->functime[probefunc] is 0, so thats why the duration is in months lmao
+
+
+	hrmmmmmmmmmm
+
+
+	can i do if statementss here
+
+	also maybe BEGIN and END probes to finish the json
+
+
+
 	*/
 
-	printf("{ \"pid\":%d, \"tid\":%d, \"ts\":%llu, \"dur\":%d, \"ph\":\"X\", \"name\":\"%s\", \"args\":{ \"ns\":%llu } },\n", pid, tid, timestamp 
+	printf("{\"pid\":%d,\"tid\":%d,\"ts\":%llu,\"dur\":%d,\"ph\":\"X\",\"name\":\"%s\",\"args\":{\"ns\":%llu}},\n", pid, tid, timestamp 
 	, this->ts, probefunc, this->ts );
 }
