@@ -1,8 +1,6 @@
 #pragma D option destructive
 #pragma D option quiet
 
-
-
 pid$target:GameTest_relx64:oxygen*:entry
 {
 	/*
@@ -23,7 +21,9 @@ printf("], \"meta_user\": \"%s\", \"meta_cpu_count\": \"%d\"}\n", execname, 32);
 
 pid$target:GameTest_relx64:oxygen*:return
 {
-
+	if (self->functime[probefunc])
+	{
+	
 	this->ts = timestamp - self->functime[probefunc];
 
 /*
@@ -56,6 +56,8 @@ pid$target:GameTest_relx64:oxygen*:return
 
 	*/
 
-	printf("{\"pid\":%d,\"tid\":%d,\"ts\":%llu,\"dur\":%d,\"ph\":\"X\",\"name\":\"%s\",\"args\":{\"ns\":%llu}},\n", pid, tid, timestamp/1000 
-	, this->ts/1000, probefunc, this->ts/1000 );
+	printf("{\"pid\":%d,\"tid\":%d,\"ts\":%llu,\"dur\":%d,\"ph\":\"X\",\"name\":\"%s\",\"args\":{\"ns\":%llu}},\n", pid, tid, timestamp 
+	, this->ts, probefunc, this->ts );
+	}
+	
 }
